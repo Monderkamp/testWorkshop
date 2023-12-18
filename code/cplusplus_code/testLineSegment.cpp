@@ -87,8 +87,8 @@ void test_LineSegmentpositionDistance(){
 }
 
 
-void test_LineSegmentOverlap(){
-    std::cout << "test_LineSegmentOverlap" << std::endl;
+void test_LineSegmentIntersect(){
+    std::cout << "test_LineSegmentIntersect" << std::endl;
     bool result = true;
 
     LineSegment LineSegment1(Vector3D(0.,0.,0.),0.0,10.);
@@ -125,7 +125,7 @@ void test_LineSegmentOverlap(){
 
     
     if (!result) {
-        std::cerr << "test_LineSegmentOverlap FAILED" << std::endl;
+        std::cerr << "test_LineSegmentIntersect FAILED" << std::endl;
     }
 
     std::cout << std::endl;
@@ -145,7 +145,7 @@ int main() {
     test_equals();
     test_CrossProduct();
     test_LineSegmentpositionDistance();
-    test_LineSegmentOverlap();
+    test_LineSegmentIntersect();
 
 
     return 0;
