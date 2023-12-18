@@ -18,14 +18,6 @@ class Vector3D:
     def __mul__(self, scalar):
         return Vector3D(self.x * scalar, self.y * scalar, self.z * scalar)
 
-    def dot(self, other):
-        return self.x * other.x + self.y * other.y + self.z * other.z
-
-    def cross(self, other):
-        return Vector3D(self.y * other.z - self.z * other.y, 
-                        self.z * other.x - self.x * other.z, 
-                        self.x * other.y - self.y * other.x)
-
     def norm2(self):
         return self.x ** 2 + self.y ** 2 + self.z ** 2
 
@@ -52,9 +44,3 @@ class LineSegment:
     def position_distance(self, otherLineSegment_):
         dist = otherLineSegment_.r - self.r
         return dist.norm()
-
-    def intersect(self, otherLineSegment_):
-        return ((self.plusEnd - self.minusEnd).cross(otherLineSegment_.minusEnd - self.minusEnd).dot(
-                (self.plusEnd - self.minusEnd).cross(otherLineSegment_.plusEnd - self.minusEnd)) < 0) \
-               and ((otherLineSegment_.plusEnd - otherLineSegment_.minusEnd).cross(self.minusEnd - otherLineSegment_.minusEnd).dot(
-                    (otherLineSegment_.plusEnd - otherLineSegment_.minusEnd).cross(self.plusEnd - otherLineSegment_.minusEnd)) < 0)
