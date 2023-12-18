@@ -97,6 +97,8 @@ void test_LineSegmentOverlap(){
     result = (result & unitTest::assertFalse(LineSegment1.intersect(LineSegment2),"parallel should not intersect."));
     result = (result & unitTest::assertFalse(LineSegment2.intersect(LineSegment2),"parallel should not intersect."));
 
+    result = (result & unitTest::assertFalse(LineSegment1.intersect(LineSegment1),"identical should not intersect."));
+
     LineSegment LineSegment3(Vector3D(0.,0.,0.),0.0,10.);
     LineSegment LineSegment4(Vector3D(0.,0.,0.),0.5*M_PI,10.);
 
