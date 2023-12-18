@@ -49,16 +49,6 @@ class Vector3D {
 			return Vector3D(x * scalar, y * scalar, z * scalar);
 		}
 
-		// Dot product
-		double dot(const Vector3D& p) const {
-			return x * p.x + y * p.y + z * p.z;
-		}
-
-		// Cross product
-		Vector3D cross(const Vector3D& p) const {
-			return Vector3D(y * p.z - z * p.y, z * p.x - x * p.z, x * p.y - y * p.x);
-		}
-
 		// Squared magnitude of vector
 		double norm2() const {
 			return x * x + y * y + z * z;
@@ -84,7 +74,6 @@ class LineSegment
 		void change_position(Vector3D R_); 
 
 		double positionDistance(LineSegment& otherLineSegment_);
-		bool intersect(LineSegment& otherLineSegment_);
 
 		private:
 		double L;
