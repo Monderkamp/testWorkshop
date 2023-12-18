@@ -23,7 +23,6 @@ void LineSegment::change_position(Vector3D R_) {
 	minusEnd.y = r.y - 0.5*L*u.y;
 	minusEnd.z = r.z - 0.5*L*u.z;
 
-
 }
 
 double LineSegment::positionDistance(LineSegment& otherLineSegment_) {
@@ -31,15 +30,8 @@ double LineSegment::positionDistance(LineSegment& otherLineSegment_) {
 	return dist.norm();
 }
 
-bool LineSegment::overlap(LineSegment& otherLineSegment_) {
-	Vector3D A = (plusEnd-minusEnd).cross(otherLineSegment_.minusEnd - minusEnd);
-	Vector3D B = (plusEnd-minusEnd).cross(otherLineSegment_.plusEnd - minusEnd);
+bool LineSegment::intersect(LineSegment& otherLineSegment_) {
 
-	bool otherCrossesThis = (plusEnd-minusEnd).cross(otherLineSegment_.minusEnd - minusEnd).dot((plusEnd-minusEnd).cross(otherLineSegment_.plusEnd - minusEnd)) < 0.;
-
-	A = (otherLineSegment_.plusEnd-otherLineSegment_.minusEnd).cross(minusEnd-otherLineSegment_.minusEnd);
-	B = (otherLineSegment_.plusEnd-otherLineSegment_.minusEnd).cross(plusEnd-otherLineSegment_.minusEnd);
-
-	bool thisCrossesOther = (otherLineSegment_.plusEnd-otherLineSegment_.minusEnd).cross(minusEnd-otherLineSegment_.minusEnd).dot((otherLineSegment_.plusEnd-otherLineSegment_.minusEnd).cross(plusEnd-otherLineSegment_.minusEnd)) < 0.;
-	return otherCrossesThis && thisCrossesOther;
+	return ((plusEnd-minusEnd).cross(otherLineSegment_.minusEnd - minusEnd).dot((plusEnd-minusEnd).cross(otherLineSegment_.plusEnd - minusEnd)) < 0.) 
+	&& ((otherLineSegment_.plusEnd-otherLineSegment_.minusEnd).cross(minusEnd-otherLineSegment_.minusEnd).dot((otherLineSegment_.plusEnd-otherLineSegment_.minusEnd).cross(plusEnd-otherLineSegment_.minusEnd)) < 0.);
 }
